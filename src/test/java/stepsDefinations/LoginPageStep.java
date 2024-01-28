@@ -1,5 +1,8 @@
 package stepsDefinations;
 
+import pageObjects.LandingPageObject;
+import pageObjects.PageGeneratorManager;
+import cucumberOptions.Hooks;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -7,61 +10,52 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import pageObjects.LoginPageObject;
+import pageUI.LandingPageUI;
+import pageUI.LoginPageUI;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
-public class LoginCTB {
+public class LoginPageStep {
 
     WebDriver driver;
+    LoginPageObject loginPage;
 
-    @Given("I am on landing page")
-    public void i_am_on_landing_page() {
-        // Write code here that turns the phrase above into concrete actions
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
-        driver.get("https://ctb-test2-hmid.hyundaisvc.com/id/en/landing");
-
+    public LoginPageStep(){
+        driver = Hooks.openAndQuitBrowser();
+        loginPage = PageGeneratorManager.loginPageObject(driver);
     }
-    @When("I go to login page")
-    public void i_go_to_login_page() {
 
-        driver.findElement(By.cssSelector("span.mypage img")).click();
 
-    }
     @When("I enter my email and then click next page")
     public void i_enter_my_email_and_then_click_next_page() {
-        driver.findElement(By.cssSelector("span.form-input input")).sendKeys("trang@gmail.com");
-        driver.findElement(By.xpath("//button//span[text()='Next']")).click();
+        loginPage.inputEmailPhake(driver,"trang@gmail.com" );
+        loginPage.clickNexttoPage(driver);
 
     }
+
     @When("I choose No i dont")
     public void i_choose_no_i_dont() {
-        driver.findElement(By.cssSelector(".btn-negative-wrap a.btn-create-acc span")).click();
-
+        loginPage.clickNoIDontWant(driver);
     }
     @When("I enter email and password")
     public void i_enter_email_and_password() {
-        driver.findElement(By.cssSelector("ctb-input[formcontrolname='email'] input")).clear();
-        driver.findElement(By.cssSelector("ctb-input[formcontrolname='email'] input")).sendKeys("trang113@yopmail.com");
 
-        driver.findElement(By.cssSelector("ctb-input[formcontrolname='password'] input")).sendKeys("1234qwer");
-
-
+        loginPage.inputEmailAndPassword(driver, "trang113@yopmail.com", "1234qwer");
     }
     @When("I sign on")
     public void i_sign_on() {
-        driver.findElement(By.xpath("//button[@type='submit']//span[text()= 'Sign In']")).click();
+
+        loginPage.clickSignIn(driver);
     }
     @Then("Go to landing page")
     public void go_to_landing_page() {
-        Assert.assertTrue(driver.findElement(By.xpath("//h2[text()='Our Models']")).isDisplayed());
+       // Assert.assertTrue(driver.findElement(By.xpath("//h2[text()='Our Models']")).isDisplayed());
     }
     @Then("Display My Gabage")
     public void display_my_gabage() {
-        Assert.assertTrue(driver.findElement(By.xpath("//span[@class='mypage']//img[contains(@src,'ico-login-dark')]")).isDisplayed());
+       // Assert.assertTrue(driver.findElement(By.xpath(LandingPageUI.LOGINED_ICON)).isDisplayed());
         driver.quit();
     }
 

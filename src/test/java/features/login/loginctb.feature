@@ -2,8 +2,7 @@ Feature: Login to CTB
   As a user, I want to be able to log into the CTB
 
   Background:
-    Given I am on landing page
-    When I go to login page
+    Given I go to login page
 
   @No-param
   Scenario: Successful login no param
