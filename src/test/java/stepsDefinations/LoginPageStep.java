@@ -49,15 +49,8 @@ public class LoginPageStep {
 
         loginPage.clickSignIn(driver);
     }
-    @Then("Go to landing page")
-    public void go_to_landing_page() {
-       // Assert.assertTrue(driver.findElement(By.xpath("//h2[text()='Our Models']")).isDisplayed());
-    }
-    @Then("Display My Gabage")
-    public void display_my_gabage() {
-       // Assert.assertTrue(driver.findElement(By.xpath(LandingPageUI.LOGINED_ICON)).isDisplayed());
-        driver.quit();
-    }
+
+
 
     @When("I enter my email {string} and then click next page")
     public void i_enter_my_email_and_then_click_next_page(String email) {

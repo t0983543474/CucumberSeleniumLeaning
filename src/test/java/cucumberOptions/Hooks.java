@@ -25,11 +25,11 @@ public class Hooks {
     public synchronized static WebDriver openAndQuitBrowser() {
         // Run by Maven command line
         String browser = System.getProperty("BROWSER");
-        System.out.println("Browser name run by command line = " + browser);
+        System.out.println("1- Browser name run by command line = " + driver);
 
         // Check driver đã được khởi tạo hay chưa?
         if (driver == null) {
-
+            System.out.println("2- Browser name run by command line = " + driver);
             // Happy path case
             try {
                 // Kiem tra BROWSER = null -> gan = chrome/ firefox (browser default for project)
@@ -52,7 +52,6 @@ public class Hooks {
                         driver = new FirefoxDriver();
                         break;
                     case "ie":
-                        WebDriverManager.iedriver().arch32().setup();
                         driver = new InternetExplorerDriver();
                         break;
                     default:

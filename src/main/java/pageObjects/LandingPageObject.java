@@ -18,4 +18,14 @@ public class LandingPageObject extends BasePage {
         clickToElement(driver, LandingPageUI.LOGIN_ICON);
     }
 
+    public boolean isLoggined(){
+        waitForElementInvisible(driver, LandingPageUI.LOGINED_ICON);
+        return isElementUnDisplay(driver,  LandingPageUI.LOGINED_ICON);
+    }
+
+    public boolean isLandingPage(){
+        waitForElementInvisible(driver, LandingPageUI.OURMODEL_TXT);
+        return isElementUnDisplay(driver,  LandingPageUI.OURMODEL_TXT);
+    }
+
 }

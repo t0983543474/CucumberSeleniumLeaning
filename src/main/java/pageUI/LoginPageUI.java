@@ -8,7 +8,7 @@ public class LoginPageUI {
     public final static String EMAIL_INPUT = "css=ctb-input[formcontrolname='email'] input";
     public final static String PASSWORD_INPUT = "css=ctb-input[formcontrolname='password'] input";
 
-    public final static String SIGN_IN_BTN = "css=//button[@type='submit']//span[text()= 'Sign In']";
+    public final static String SIGN_IN_BTN = "xpath=//button[@type='submit']//span[text()= 'Sign In']";
 
 
 
