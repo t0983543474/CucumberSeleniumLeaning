@@ -118,9 +118,9 @@ public class BasePage {
     }
 
 
-    protected boolean isElementUnDisplay(WebDriver driver, String locator) {
+    protected boolean isElementDisplay(WebDriver driver, String locator) {
 
-        boolean undisplay = true;
+        boolean isdisplay = true;
         overiteImplicitTimeout(driver, shorttime);
 
         List<WebElement> elements = getWebElements(driver, locator);
@@ -128,16 +128,16 @@ public class BasePage {
         overiteImplicitTimeout(driver, longtime);
         if(elements.size()==0) {
 
-            undisplay=  true;
-        }else if(elements.size()>0 && !elements.get(0).isDisplayed()) {
+            isdisplay=  false;
+        }else if(elements.size()>0 && elements.get(0).isDisplayed()) {
 
-            undisplay=  true;
+            isdisplay=  true;
         }else {
 
-            undisplay = false;
+            isdisplay = false;
         }
 
-        return undisplay;
+        return isdisplay;
     }
 
     protected void  waitForElementVisible(WebDriver driver, String locator) {

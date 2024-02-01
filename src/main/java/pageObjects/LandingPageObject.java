@@ -19,13 +19,13 @@ public class LandingPageObject extends BasePage {
     }
 
     public boolean isLoggined(){
-        waitForElementInvisible(driver, LandingPageUI.LOGINED_ICON);
-        return isElementUnDisplay(driver,  LandingPageUI.LOGINED_ICON);
+        waitForElementVisible(driver, LandingPageUI.LOGINED_ICON);
+        return isElementDisplay(driver,  LandingPageUI.LOGINED_ICON);
     }
 
     public boolean isLandingPage(){
-        waitForElementInvisible(driver, LandingPageUI.OURMODEL_TXT);
-        return isElementUnDisplay(driver,  LandingPageUI.OURMODEL_TXT);
+        waitForElementVisible(driver, LandingPageUI.OURMODEL_TXT);
+        return isElementDisplay(driver,  LandingPageUI.OURMODEL_TXT);
     }
 
 }
