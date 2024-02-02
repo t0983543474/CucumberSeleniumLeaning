@@ -19,7 +19,6 @@
 
     <dependencies>
 
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -27,36 +26,11 @@
             <version>${selenium.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>5.3.3</version>
-        </dependency>
-
 <!--        <dependency>-->
-<!--            <groupId>org.testng</groupId>-->
-<!--            <artifactId>testng</artifactId>-->
-<!--            <version>7.8.0</version>-->
+<!--            <groupId>io.github.bonigarcia</groupId>-->
+<!--            <artifactId>webdrivermanager</artifactId>-->
+<!--            <version>5.3.3</version>-->
 <!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>io.cucumber</groupId>-->
-<!--            <artifactId>cucumber-java</artifactId>-->
-<!--            <version>7.12.0</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>io.cucumber</groupId>-->
-<!--            <artifactId>cucumber-testng</artifactId>-->
-<!--            <version>7.12.0</version>-->
-<!--        </dependency>-->
-
-
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
 
 
         <dependency>
@@ -77,11 +51,7 @@
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.cucumber</groupId>-->
-<!--            <artifactId>cucumber-testng</artifactId>-->
-<!--            <version>${cucumber.version}</version>-->
-<!--        </dependency>-->
+
 
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -101,22 +71,32 @@
             <version>2.0.7</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.vimalselvam/cucumber-extentsreport -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>2.0.7</version>
+            <groupId>com.vimalselvam</groupId>
+            <artifactId>cucumber-extentsreport</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>5.0.9</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>net.masterthought</groupId>
             <artifactId>cucumber-reporting</artifactId>
-            <version>3.20.0</version>
-        </dependency>
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>2.3.1</version>
-            <scope>test</scope>
+            <version>5.6.1</version>
         </dependency>
 
     </dependencies>
@@ -130,8 +110,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.6.0</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>17</source>
+                    <target>17</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -143,16 +123,17 @@
                 <version>2.18.1</version>
                 <configuration>
                     <includes>
-                        <include>**/*/cucumberOptions.RunCucumberTests.java</include>
+                        <include>**/*/RunCucumberTests.java</include>
                     </includes>
                 </configuration>
             </plugin>
 
             <!-- Generate report -->
+
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
-                <version>3.10.0</version>
+                <version>5.6.0</version>
                 <executions>
                     <execution>
                         <id>execution</id>
@@ -161,11 +142,16 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <projectName>SELENIUM ONLINE - BANK GURU</projectName>
-                            <outputDirectory>${project.build.directory}/site/cucumber-reporting</outputDirectory>
-                            <cucumberOutput>${project.build.directory}/site/cucumber.json</cucumberOutput>
-<!--                            <enableFlashCharts>true</enableFlashCharts>-->
-<!--                            <skippedFails>true</skippedFails>-->
+                            <projectName>cucumberReporting</projectName>
+                            <skip>false</skip>
+                            <outputDirectory>${project.build.directory}/cucumber-reports/cucumber-reporting</outputDirectory>
+                            <inputDirectory>${project.build.directory}/cucumber-reports</inputDirectory>
+                            <jsonFiles>
+                                <param>**/*.json</param>
+                            </jsonFiles>
+<!--                            <mergeFeaturesById>false</mergeFeaturesById>-->
+<!--                            <mergeFeaturesWithRetest>false</mergeFeaturesWithRetest>-->
+<!--                            <checkBuildResult>false</checkBuildResult>-->
                         </configuration>
                     </execution>
                 </executions>

@@ -2,7 +2,7 @@ package cucumberOptions;
 
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,8 +13,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 
 import commons.GlobalConstants;
-//import cucumber.api.java.Before;
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 public class Hooks {
     // Run for many thread
