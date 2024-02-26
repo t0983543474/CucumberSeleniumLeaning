@@ -15,14 +15,15 @@ import managers.FileReaderManager;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/java/features",
-        glue = "stepsDefinations",
+        glue = {
+                "stepsDefinations"
+        },
         plugin = {
-                "pretty",
-                "html:target/cucumber-reports/TestRunnerCategoryCMS.html",
+//                "html:target/cucumber-reports/TestRunnerCategoryCMS.html",
                 "json:target/cucumber-reports/TestRunnerCategoryCMS.json"
         },
-        monochrome = true,
-        tags = "@No-param"
+        monochrome = true
+//        tags = "@DataTestDrive"
 )
 public class RunCucumberTests  {
 //    @AfterClass

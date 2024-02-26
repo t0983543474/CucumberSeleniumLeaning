@@ -1,18 +1,16 @@
 package stepsDefinations;
 
-import pageObjects.LandingPageObject;
-import pageObjects.PageGeneratorManager;
 import cucumberOptions.Hooks;
-import io.cucumber.datatable.DataTable;
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
+import pageObjects.LandingPageObject;
+import pageObjects.PageGeneratorManager;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pageObjects.LoginPageObject;
-import pageUI.LandingPageUI;
-import pageUI.LoginPageUI;
 
 import java.util.List;
 import java.util.Map;
@@ -21,10 +19,12 @@ public class LoginPageStep {
 
     WebDriver driver;
     LoginPageObject loginPage;
+    LandingPageObject landingPage;
 
     public LoginPageStep(){
-        driver = Hooks.openAndQuitBrowser();
+        driver = new Hooks().openAndQuitBrowser();
         loginPage = PageGeneratorManager.loginPageObject(driver);
+        landingPage = PageGeneratorManager.landingPageObject(driver);
     }
 
 
@@ -54,16 +54,14 @@ public class LoginPageStep {
 
     @When("I enter my email {string} and then click next page")
     public void i_enter_my_email_and_then_click_next_page(String email) {
-        driver.findElement(By.cssSelector("span.form-input input")).sendKeys(email);
-        driver.findElement(By.xpath("//button//span[text()='Next']")).click();
+        loginPage.inputEmailPhake(driver,email );
+        loginPage.clickNexttoPage(driver);
 
     }
     @When("I enter email {string} and password is {string}")
     public void i_enter_email_and_password_is(String email, String password) {
-        driver.findElement(By.cssSelector("ctb-input[formcontrolname='email'] input")).clear();
-        driver.findElement(By.cssSelector("ctb-input[formcontrolname='email'] input")).sendKeys(email);
 
-        driver.findElement(By.cssSelector("ctb-input[formcontrolname='password'] input")).sendKeys(password);
+        loginPage.inputEmailAndPassword(driver, email, password);
 
     }
 
@@ -78,15 +76,42 @@ public class LoginPageStep {
         // For other transformations you can register a DataTableType.
         List<Map<String, String>> loginInfor = dataTable.asMaps(String.class, String.class);
 
-        driver.findElement(By.cssSelector("ctb-input[formcontrolname='email'] input")).clear();
-        driver.findElement(By.cssSelector("ctb-input[formcontrolname='email'] input")).sendKeys(loginInfor.get(0).get("email"));
+        loginPage.inputEmailAndPassword(driver, loginInfor.get(0).get("email"), loginInfor.get(0).get("password"));
 
-        driver.findElement(By.cssSelector("ctb-input[formcontrolname='password'] input")).sendKeys(loginInfor.get(0).get("password"));
 
 //        for(Map<String, String> login : loginInfor){
 //
 //        }
 
     }
+
+    @Given("I go to login page")
+    public void i_go_to_login_page() {
+        landingPage.clickIconToLoginPage();
+    }
+
+    @Then("Go to landing page")
+    public void go_to_landing_page() {
+        Assert.assertTrue(landingPage.isLandingPage());
+    }
+    @Then("Display My Gabage")
+    public void display_my_gabage() {
+        Assert.assertTrue(landingPage.isLoggined());
+//        landingPage.clickLogout();
+//        driver.quit();
+
+    }
+
+    @After
+    public void closeBrowser(){
+//        log.info("OS name = " + driver);
+        System.out.println("OS name = Login " + driver);
+        if (driver != null){
+            driver.quit();
+        }
+    }
+
+
+
 
 }

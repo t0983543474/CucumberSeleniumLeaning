@@ -4,10 +4,9 @@ Feature: Login to CTB
   Background:
     Given I go to login page
 
+
   @No-param
   Scenario: Successful login no param
-#    Given I am on landing page
-#    When I go to login page
     And I enter my email and then click next page
     And I choose No i dont
     And I enter email and password
@@ -17,8 +16,6 @@ Feature: Login to CTB
 
   @Param
   Scenario: Successful login with param
-#    Given I am on landing page
-#    When I go to login page
     And I enter my email "trang@gmail.com" and then click next page
     And I choose No i dont
     And I enter email "trang113@yopmail.com" and password is "1234qwer"
@@ -26,10 +23,10 @@ Feature: Login to CTB
     Then Go to landing page
     And Display My Gabage
 
+
+
   @Datatable
   Scenario: Successful login datatable
-#    Given I am on landing page
-#    When I go to login page
     And I enter my email "trang@gmail.com" and then click next page
     And I choose No i dont
     And I enter email new email and password
@@ -41,8 +38,6 @@ Feature: Login to CTB
 
   @DataTestDrive
   Scenario Outline: Successful login datatable
-#    Given I am on landing page
-#    When I go to login page
     And I enter my email "trang@gmail.com" and then click next page
     And I choose No i dont
     And I enter email "<email>" and password is "<password>"
@@ -53,4 +48,8 @@ Feature: Login to CTB
     Examples:
       |email | password |
       |trang113@yopmail.com | 1234qwer |
+
+
+
+
 
