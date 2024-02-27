@@ -11,7 +11,9 @@ public class LandingPageUI {
 
     public final static String EMAIL_INPUT = "css=ctb-input.input-email input";
     public final static String SEND_BTN  = "css=button.btn-send";
-    public final static String LOADING_ICON = "css=div.spinner-background";
+
+    public final static String FLOATING_MENU_REQUEST_TESTDRIVE = "xpath=//div[@id='floatingDom']//span[text()='Request a Test Drive']";
+
 
 
 

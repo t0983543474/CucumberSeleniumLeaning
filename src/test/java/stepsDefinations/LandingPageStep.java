@@ -1,6 +1,5 @@
 package stepsDefinations;
 
-import cucumberOptions.Hooks;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -16,6 +15,7 @@ public class LandingPageStep {
 
     public LandingPageStep(){
         driver = new Hooks().openAndQuitBrowser();
+        System.out.println("LandingPageStep = " + driver);
         landingPage = PageGeneratorManager.landingPageObject(driver);
     }
 
@@ -64,33 +64,33 @@ public class LandingPageStep {
 
     }
 
-//
-//    @Given("Click Track your Inquiry Booking button")
-//    public void click_track_your_inquiry_booking_button() {
-//        landingPage.clickToOpenTrackYourInquiryPopup();
-//
-//    }
-//    @Given("Input email {string} and sent it")
-//    public void input_email_and_sent_it(String email) {
-////        Assert.assertTrue();
-//        landingPage.inputTrackingPopup(email);
-//        Assert.assertTrue(false);
-//    }
-//    @Given("Input OTP")
-//    public void input_otp() {
-////        driver.quit();
-//        // Write code here that turns the phrase above into concrete actions
-////        throw new io.cucumber.java.PendingException();
-//    }
-//
-//    @After
-//    public void closeBrowser(){
-////        log.info("OS name = " + driver);
-//        System.out.println("OS name Landing page = " + driver);
-//        if (driver != null){
-//            driver.quit();
-//        }
-//    }
+
+    @Given("Click Track your Inquiry Booking button")
+    public void click_track_your_inquiry_booking_button() {
+        landingPage.clickToOpenTrackYourInquiryPopup();
+
+    }
+    @Given("Input email {string} and sent it")
+    public void input_email_and_sent_it(String email) {
+//        Assert.assertTrue();
+        landingPage.inputTrackingPopup(email);
+        Assert.assertTrue(false);
+    }
+    @Given("Input OTP")
+    public void input_otp() {
+//        driver.quit();
+        // Write code here that turns the phrase above into concrete actions
+//        throw new io.cucumber.java.PendingException();
+    }
+
+    @After
+    public void closeBrowser(){
+//        log.info("OS name = " + driver);
+        System.out.println("OS name Landing page = " + driver);
+        if (driver != null){
+            driver.quit();
+        }
+    }
 
 
 }

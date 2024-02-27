@@ -22,8 +22,8 @@ import managers.FileReaderManager;
 //                "html:target/cucumber-reports/TestRunnerCategoryCMS.html",
                 "json:target/cucumber-reports/TestRunnerCategoryCMS.json"
         },
-        monochrome = true
-//        tags = "@DataTestDrive"
+        monochrome = true,
+        tags = "@No-param"
 )
 public class RunCucumberTests  {
 //    @AfterClass

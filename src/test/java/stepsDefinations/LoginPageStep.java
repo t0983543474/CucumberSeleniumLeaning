@@ -1,6 +1,5 @@
 package stepsDefinations;
 
-import cucumberOptions.Hooks;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -20,9 +19,12 @@ public class LoginPageStep {
     WebDriver driver;
     LoginPageObject loginPage;
     LandingPageObject landingPage;
+    TestContext testContext;
 
-    public LoginPageStep(){
+    public LoginPageStep(TestContext context){
         driver = new Hooks().openAndQuitBrowser();
+        testContext = context;
+        testContext.scenarioContext.setContext(Context.DRIVE, driver);
         loginPage = PageGeneratorManager.loginPageObject(driver);
         landingPage = PageGeneratorManager.landingPageObject(driver);
     }
@@ -31,12 +33,14 @@ public class LoginPageStep {
     @When("I enter my email and then click next page")
     public void i_enter_my_email_and_then_click_next_page() {
         loginPage.inputEmailPhake(driver,"trang@gmail.com" );
+        testContext.scenarioContext.setContext(Context.LOGIN_URL,"trang@gmail.com" );
         loginPage.clickNexttoPage(driver);
 
     }
 
     @When("I choose No i dont")
     public void i_choose_no_i_dont() {
+
         loginPage.clickNoIDontWant(driver);
     }
     @When("I enter email and password")
@@ -96,9 +100,8 @@ public class LoginPageStep {
     }
     @Then("Display My Gabage")
     public void display_my_gabage() {
+        System.out.println("Tets Context example " + testContext.scenarioContext.getContext(Context.LOGIN_URL));
         Assert.assertTrue(landingPage.isLoggined());
-//        landingPage.clickLogout();
-//        driver.quit();
 
     }
 
