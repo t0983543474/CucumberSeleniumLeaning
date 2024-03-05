@@ -18,21 +18,27 @@ public class LandingPageObject extends BasePage {
         clickToElement(driver, LandingPageUI.LOGIN_ICON);
     }
 
-    public boolean isLoggined(){
-        waitForElementVisible(driver, LandingPageUI.LOGINED_ICON);
-        return isElementDisplay(driver,  LandingPageUI.LOGINED_ICON);
-    }
+
 
     public boolean isLandingPage(){
         waitForElementVisible(driver, LandingPageUI.OURMODEL_TXT);
         return isElementDisplay(driver,  LandingPageUI.OURMODEL_TXT);
     }
 
+   public boolean isLogined(){
+//       waitForElementVisible(driver, LandingPageUI.LOGINED_ICON);
+       return isElementDisplay(driver, LandingPageUI.LOGINED_ICON);
+   }
+
     public void clickLogout(){
         waitForElementVisible(driver, LandingPageUI.LOGINED_ICON);
         clickToElement(driver, LandingPageUI.LOGINED_ICON);
         waitForElementVisible(driver, LandingPageUI.LOGOUT_BTN);
         clickToElement(driver, LandingPageUI.LOGOUT_BTN);
+    }
+    public void GotoLandingPage(){
+        waitForElementVisible(driver, LandingPageUI.CLICKTOBY_TEXT);
+        clickToElement(driver, LandingPageUI.CLICKTOBY_TEXT);
     }
 
     public void clickToOpenTrackYourInquiryPopup(){

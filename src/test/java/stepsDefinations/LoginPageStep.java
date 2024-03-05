@@ -1,13 +1,17 @@
 package stepsDefinations;
 
-import io.cucumber.java.After;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
+import cucumber.api.DataTable;
+import cucumber.api.java.After;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+
+import cucumber.api.java.en.When;
+import cucumberOptions.Hooks;
 import org.junit.Assert;
 import pageObjects.LandingPageObject;
 import pageObjects.PageGeneratorManager;
-import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.When;
+
 import org.openqa.selenium.WebDriver;
 import pageObjects.LoginPageObject;
 
@@ -22,18 +26,25 @@ public class LoginPageStep {
     TestContext testContext;
 
     public LoginPageStep(TestContext context){
-        driver = new Hooks().openAndQuitBrowser();
+        driver =  Hooks.openAndQuitBrowser();
         testContext = context;
         testContext.scenarioContext.setContext(Context.DRIVE, driver);
         loginPage = PageGeneratorManager.loginPageObject(driver);
         landingPage = PageGeneratorManager.landingPageObject(driver);
     }
 
+//    @After
+//    public void close(){
+//        if (driver!= null){
+//            driver.quit();
+//        }
+//    }
+
 
     @When("I enter my email and then click next page")
     public void i_enter_my_email_and_then_click_next_page() {
         loginPage.inputEmailPhake(driver,"trang@gmail.com" );
-        testContext.scenarioContext.setContext(Context.LOGIN_URL,"trang@gmail.com" );
+//        testContext.scenarioContext.setContext(Context.LOGIN_URL,"trang@gmail.com" );
         loginPage.clickNexttoPage(driver);
 
     }
@@ -56,18 +67,18 @@ public class LoginPageStep {
 
 
 
-    @When("I enter my email {string} and then click next page")
-    public void i_enter_my_email_and_then_click_next_page(String email) {
-        loginPage.inputEmailPhake(driver,email );
-        loginPage.clickNexttoPage(driver);
-
-    }
-    @When("I enter email {string} and password is {string}")
-    public void i_enter_email_and_password_is(String email, String password) {
-
-        loginPage.inputEmailAndPassword(driver, email, password);
-
-    }
+//    @When("I enter my email {string} and then click next page")
+//    public void i_enter_my_email_and_then_click_next_page(String email) {
+//        loginPage.inputEmailPhake(driver,email );
+//        loginPage.clickNexttoPage(driver);
+//
+//    }
+//    @When("I enter email {string} and password is {string}")
+//    public void i_enter_email_and_password_is(String email, String password) {
+//
+//        loginPage.inputEmailAndPassword(driver, email, password);
+//
+//    }
 
     @When("I enter email new email and password")
     public void i_enter_email_new_email_and_password(DataTable dataTable) {
@@ -100,21 +111,34 @@ public class LoginPageStep {
     }
     @Then("Display My Gabage")
     public void display_my_gabage() {
-        System.out.println("Tets Context example " + testContext.scenarioContext.getContext(Context.LOGIN_URL));
-        Assert.assertTrue(landingPage.isLoggined());
+//        System.out.println("Tets Context example " + testContext.scenarioContext.getContext(Context.LOGIN_URL));
+        Assert.assertTrue(landingPage.isLogined());
 
     }
 
-    @After
-    public void closeBrowser(){
-//        log.info("OS name = " + driver);
-        System.out.println("OS name = Login " + driver);
-        if (driver != null){
-            driver.quit();
+    @And("^I enter my email \"([^\"]*)\" and then click next page$")
+    public void iEnterMyEmailAndThenClickNextPage(String email)  {
+        loginPage.inputEmailPhake(driver,email );
+        loginPage.clickNexttoPage(driver);
+    }
+
+    @And("^I enter email \"([^\"]*)\" and password is \"([^\"]*)\"$")
+    public void iEnterEmailAndPasswordIs(String email, String password)  {
+        loginPage.inputEmailAndPassword(driver, email, password);
+    }
+
+
+    @After("@login")
+    public void logoutAndGoToLandingPage(){
+        System.out.println();
+        if (landingPage.isLogined()){
+            landingPage.clickLogout();
+
         }
+        landingPage.GotoLandingPage();
     }
 
-
-
-
+//    @And("^demo(\\d+)$")
+//    public void demo(int arg0) {
+//    }
 }

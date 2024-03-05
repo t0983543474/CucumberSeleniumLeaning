@@ -12,6 +12,8 @@ public class LandingPageUI {
     public final static String EMAIL_INPUT = "css=ctb-input.input-email input";
     public final static String SEND_BTN  = "css=button.btn-send";
 
+    public final static String CLICKTOBY_TEXT= "xpath=//div[@class='GNB sticky-menu']//p[text()='Cl!ck to Buy']";
+
     public final static String FLOATING_MENU_REQUEST_TESTDRIVE = "xpath=//div[@id='floatingDom']//span[text()='Request a Test Drive']";
 
 

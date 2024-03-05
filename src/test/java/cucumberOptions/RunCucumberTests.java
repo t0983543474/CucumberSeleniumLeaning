@@ -1,10 +1,9 @@
 package cucumberOptions;
 
-import com.vimalselvam.cucumber.listener.Reporter;
-import io.cucumber.junit.Cucumber;
 
-import io.cucumber.junit.CucumberOptions;
 
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
 import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 
@@ -19,15 +18,13 @@ import managers.FileReaderManager;
                 "stepsDefinations"
         },
         plugin = {
-//                "html:target/cucumber-reports/TestRunnerCategoryCMS.html",
+                "html:target/cucumber-reports/TestRunnerCategoryCMS.html",
                 "json:target/cucumber-reports/TestRunnerCategoryCMS.json"
         },
         monochrome = true,
-        tags = "@No-param"
+//        tags={"@login","@tracking"}
+        tags = "@login"
 )
 public class RunCucumberTests  {
-//    @AfterClass
-//    public static void writeExtentReport() {
-//        Reporter.loadXMLConfig(new File(FileReaderManager.getInstance().getConfigReader().getReportConfigPath()));
-//    }
+
 }

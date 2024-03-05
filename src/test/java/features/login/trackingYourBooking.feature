@@ -18,6 +18,7 @@ Feature: Tracking CTB
 #  |CRETA Alpha | DKI Jakarta | Jakarta Selatan | Kebayoran Lama | Hyundai Simprug | Heribert Try Bastanta | 16 | 10.00 | Mr. | Trang | Le | 123456789000 | trang.le@inventis.vn | Trang commemt|
 
 
+  @tracking
   Scenario: Verify tracking page
     And Click Track your Inquiry Booking button
     And Input email "trang.le@inventis.vn" and sent it
