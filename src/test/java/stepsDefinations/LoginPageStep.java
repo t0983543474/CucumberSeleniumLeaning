@@ -1,5 +1,7 @@
 package stepsDefinations;
 
+import commons.GlobalConstants;
+import commons.WebDriverFactory;
 import cucumber.api.DataTable;
 import cucumber.api.java.After;
 import cucumber.api.java.en.And;
@@ -7,7 +9,6 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
 import cucumber.api.java.en.When;
-import cucumberOptions.Hooks;
 import org.junit.Assert;
 import pageObjects.LandingPageObject;
 import pageObjects.PageGeneratorManager;
@@ -26,7 +27,9 @@ public class LoginPageStep {
     TestContext testContext;
 
     public LoginPageStep(TestContext context){
-        driver =  Hooks.openAndQuitBrowser();
+//        driver =  Hooks.openAndQuitBrowser();
+        driver = WebDriverFactory.getDriver();
+
         testContext = context;
         testContext.scenarioContext.setContext(Context.DRIVE, driver);
         loginPage = PageGeneratorManager.loginPageObject(driver);
@@ -128,15 +131,15 @@ public class LoginPageStep {
     }
 
 
-    @After("@login")
-    public void logoutAndGoToLandingPage(){
-        System.out.println();
-        if (landingPage.isLogined()){
-            landingPage.clickLogout();
-
-        }
-        landingPage.GotoLandingPage();
-    }
+//    @After("@login")
+//    public void logoutAndGoToLandingPage(){
+//        System.out.println();
+//        if (landingPage.isLogined()){
+//            landingPage.clickLogout();
+//
+//        }
+//        landingPage.GotoLandingPage();
+//    }
 
 //    @And("^demo(\\d+)$")
 //    public void demo(int arg0) {

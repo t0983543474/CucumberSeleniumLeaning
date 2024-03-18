@@ -1,11 +1,11 @@
 package stepsDefinations;
 
+import commons.WebDriverFactory;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import cucumberOptions.Hooks;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pageObjects.LandingPageObject;
@@ -16,7 +16,7 @@ public class LandingPageStep {
     LandingPageObject landingPage ;
 
     public LandingPageStep(){
-        driver = Hooks.openAndQuitBrowser();
+        driver = WebDriverFactory.getDriver();
         System.out.println("LandingPageStep = " + driver);
         landingPage = PageGeneratorManager.landingPageObject(driver);
     }
