@@ -1,6 +1,6 @@
 package managers;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -13,7 +13,6 @@ public class BrowserManager {
         WebDriver driver = null;
         if (browserName.equalsIgnoreCase("chrome")) {
             //steup chrome browser
-            WebDriverManager.chromedriver().setup();
 
 
             //initialize driver for chrome

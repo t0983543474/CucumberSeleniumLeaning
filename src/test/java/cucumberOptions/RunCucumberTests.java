@@ -2,8 +2,9 @@ package cucumberOptions;
 
 
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
 import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 
@@ -23,7 +24,7 @@ import managers.FileReaderManager;
         },
         monochrome = true
 //        tags={"@login","@tracking"}
-//        tags = "@login"
+    //    tags = "@No-param"
 )
 public class RunCucumberTests  {
 

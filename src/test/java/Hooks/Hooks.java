@@ -3,20 +3,11 @@ package Hooks;
 import java.util.concurrent.TimeUnit;
 
 import commons.WebDriverFactory;
-import cucumber.api.java.After;
-import managers.BrowserManager;
-import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import org.openqa.selenium.remote.UnreachableBrowserException;
-
-import cucumber.api.java.Before;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 import commons.GlobalConstants;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 
 
 public class Hooks {

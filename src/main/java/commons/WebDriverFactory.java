@@ -1,6 +1,6 @@
 package commons;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -12,7 +12,7 @@ public class WebDriverFactory {
         switch (browser) {
             case "chrome":
                 driver = ThreadLocal.withInitial(() -> {
-                    WebDriverManager.chromedriver().setup();
+
                     return new ChromeDriver();
                 });
                 break;
